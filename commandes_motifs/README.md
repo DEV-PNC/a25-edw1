@@ -317,77 +317,9 @@ cd ..
 ln -s css/style.css current_style.css
 ln -s js/app.js main.js
 
-# 3. Liens pour toutes les images JPG
-for img in img/*.jpg; do
-    ln -s "$img" "dist/$(basename "$img")"
-done
-
-# 4. Vérifiez la structure des liens
-find . -type l -ls
 ```
 
 ---
-
-## Partie 4 : Scénarios réels (30 minutes)
-
-### Scénario 1 : Organisation de photos
-
-```bash
-# Vous avez des photos nommées :
-# IMG_20240101_120101.jpg, IMG_20240101_120102.jpg, etc.
-# VID_20240101_120101.mp4, etc.
-
-# 1. Créez des dossiers par année
-mkdir -p photos/{2023,2024}
-
-# 2. Déplacez les photos 2024
-mv *2024* photos/2024/
-
-# 3. Séparez photos et vidéos
-mkdir photos/2024/{images,videos}
-mv photos/2024/IMG_* photos/2024/images/
-mv photos/2024/VID_* photos/2024/videos/
-
-# 4. Créez des liens pour le dernier mois
-ln -s photos/2024/images/IMG_202412* dernier_mois/
-```
-
-### Scénario 2 : Cleanup de log
-
-```bash
-# Fichiers : app_20240101.log, app_20240102.log, ... app_20241231.log
-# error_20240101.log, etc.
-
-# 1. Archivez les vieux logs (avant juin)
-mkdir archive
-mv *20240[1-5]*.log archive/
-
-# 2. Compressez les archives
-tar czf logs_2024_sem1.tar.gz archive/*
-
-# 3. Gardez seulement les 7 derniers jours en non compressé
-# Supprimez tout sauf les 7 derniers
-ls -t app_*.log | tail -n +8 | xargs rm -f
-
-# 4. Créez un lien vers le log courant
-ln -sf $(ls -t app_*.log | head -1) current.log
-```
-
----
-
-## Solutions détaillées
-
-### Pour l'Exercice 2.2 : Solution
-
-```bash
-# Créer data_jan_01.txt à data_dec_31.txt
-for mois in jan feb mar apr may jun jul aug sep oct nov dec; do
-    for jour in {01..31}; do
-        touch "data_${mois}_${jour}.txt"
-    done
-done
-# Note: Certains fichiers (feb_30.txt, etc.) seront créés mais c'est OK pour l'exercice
-```
 
 ### Bonnes pratiques enseignées : Bonne pratique
 
