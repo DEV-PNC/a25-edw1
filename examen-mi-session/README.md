@@ -2,6 +2,9 @@
 
 **Durée** : 2 heures  
 **Obligatoire** : Vos caméras doivet êtres allumées tout le long de l'examen
+
+---
+
 **Remise** : Mettez vos réponses dans un fichier .md / .txt / .doc ainsi que les screenshots dans un dossier compréssé nommé ainsi : votre-nom-edw1-mi-session.zip
 
 ---
